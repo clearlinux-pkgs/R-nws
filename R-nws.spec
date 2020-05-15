@@ -4,43 +4,36 @@
 #
 Name     : R-nws
 Version  : 1.7.0.1
-Release  : 16
+Release  : 17
 URL      : https://cran.r-project.org/src/contrib/nws_1.7.0.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/nws_1.7.0.1.tar.gz
 Summary  : R functions for NetWorkSpaces and Sleigh
 Group    : Development/Tools
 License  : GPL-2.0+
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-NetWorkSpaces for R
----------------------
-NetWorkSpaces (NWS) is a powerful, easy-to-use software package that
-makes it easy to write parallel R programs.  It allows you to easily
-launch a set of worker processes on a specified list of machines, and
-then submit tasks to those workers.  For many programs, that is all you
-need, but for more sophisticated programs, you can take advantage of the
-powerful communication layer to directly communicate and coordinate
-between the master and worker processes.
+as well as limited cross-language data exchange, using the
+        netWorkSpaces server developed by REvolution Computing
 
 %prep
 %setup -q -c -n nws
+cd %{_builddir}/nws
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571869672
+export SOURCE_DATE_EPOCH=1589536944
 
 %install
-export SOURCE_DATE_EPOCH=1571869672
+export SOURCE_DATE_EPOCH=1589536944
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
